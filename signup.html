@@ -342,6 +342,7 @@
     }
   }
   function getLocation() {
+    event.preventDefault();
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
       } else {
