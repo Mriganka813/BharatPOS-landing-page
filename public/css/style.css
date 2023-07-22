@@ -410,7 +410,9 @@ section {
 
 .section-title1 {
   text-align: center;
-  padding-bottom: 30px;
+  margin-left:20px;
+  margin-right:20px;
+  padding-bottom: 10px;
 }
 .section-title h2 {
   font-size: 32px;
