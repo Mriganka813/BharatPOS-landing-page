@@ -9,23 +9,42 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
     <style>
         .about-us {
             height: 100vh;
             display: grid;
             place-items: center;
         }
+
+        .about-us {
+            display: flex;
+            justify-content: center;
+            padding-top: 30px;
+            flex-direction: column;
+        }
+
+        .about-us>h1 {
+            color: #0047FF;
+            text-align: center;
+            font-weight: 400;
+            font-size: 4.3rem;
+            padding-bottom: 50px;
+        }
     </style>
 </head>
 
 <body class="about-us">
+    <h1 class="text-center">
+        Cancellation and Refund Policy
+    </h1>
     <main id="main">
         <section class="details" id="details">
             <div class="container">
-                <h1 class="text-center">
-                    Cancellation and Refund Policy
-                </h1>
-                <p>
+                <p data-aos="fade-right" data-aos-delay="200" style="text-align: justify;">
                     Users have the freedom to cancel their subscription at any time. However, it's important to note
                     that no refunds will be provided for any amounts already paid. Once a subscription is canceled,
                     access to the associated services will cease at the end of the current billing cycle. We encourage
@@ -49,5 +68,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 
 </html>
