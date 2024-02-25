@@ -6,221 +6,184 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-</head>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    background-color: #ffff;
 
-  }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  .container {
-    margin: 1rem auto;
-    width: 40%;
-    padding: 1.5rem;
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-
-
-  }
-
-  form .box input {
-    padding: 0.6rem;
-    border-radius: 0.8rem;
-
-  }
-
-  form .box label {
-    font-size: 1.5rem;
-    padding: 0.5rem 0 0.3rem;
-
-  }
-
-  .box {
-    margin: 1rem 0 1rem;
-    display: flex;
-    flex-direction: column;
-
-  }
-
-  .box-1 {
-    margin: 1rem 0 1rem;
-    display: flex;
-    gap: 1rem;
-  }
-
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 3rem;
-    height: 1.5rem;
-  }
-
-
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 1rem;
-    width: 1rem;
-    left: 0.1rem;
-    bottom: 0.2rem;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  .switch input:checked+.slider {
-    background-color: #2196F3;
-  }
-
-  .switch input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-
-  .switch input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-
-
-  .slider.round {
-    border-radius: 1rem;
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
-  }
-
-  #toggle-content {
-    display: none;
-  }
-
-  .switch input:checked+.slider+.toggle-content {
-    display: block;
-  }
-
-  #img {
-    width: 8rem;
-    height: 8rem;
-
-
-  }
-
-  .box select {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 0.8rem;
-  }
-
-  .box select option {
-    padding: 0.8rem;
-  }
-
-  #image-input {
-    display: none;
-
-  }
-
-  #image-preview {
-    cursor: pointer;
-  }
-
-  .box-check {
-    display: flex;
-    gap: 0.6rem;
-    font-size: 1.2rem;
-
-  }
-
-  .box-check input {
-    height: 1.2rem;
-    width: 1.2rem;
-    margin: 0.5rem;
-
-  }
-
-  .box button {
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    border-radius: 0.8rem;
-    cursor: pointer;
-    background-color: blue;
-    font-weight: bold;
-    color: #fff;
-    border: none;
-  }
-
-
-  .image-picker {
-    display: inline-block;
-    padding: 10px 20px;
-    /* background-color: #f0f0f0; */
-    color: #333;
-    /* border: 1px solid #ccc; */
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .icon {
-    display: inline-block;
-    font-size: 18px;
-    margin-right: 5px;
-  }
-
-  .icon img {
-    height: 100%;
-    width: 100%;
-  }
-
-
-  .box .radio {
-    display: flex;
-    gap: 1rem;
-    border: 0.1rem solid black;
-    border-radius: 0.8rem;
-    padding: 0.1rem 0.5rem;
-  }
-
-  #image-preview {
-    width: 128px;
-    height: 140px;
-  }
-
-  @media(max-width:910px) {
-    .container {
-      width: 85%;
-
-
+    * {
+      font-family: "Roboto", sans-serif;
     }
-  }
-</style>
+
+    body {
+      background-color: #f4f4f4;
+    }
+
+    .box-sign>p {
+      font-size: 0.9rem;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #0047FF;
+      text-align: center;
+      font-weight: 400;
+      font-size: 2.8rem;
+    }
+
+    .box {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+      background-repeat: no-repeat;
+      background-position-x: 100%;
+      background-position-y: 50%;
+      padding-right: 30px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .box-check {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .box-check input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .box-check p {
+      margin: 0;
+    }
+
+    .radio {
+      display: flex;
+      align-items: center;
+    }
+
+    .radio input[type="radio"] {
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .radio>label {
+      font-weight: 300;
+      margin: 0;
+      margin-right: 20px;
+    }
+
+    #toggle-content {
+      display: none;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #image {
+      display: none;
+    }
+
+    /* Style the label to make it visually clickable */
+    .image-picker {
+      cursor: pointer;
+    }
+
+    .preview-image {
+      background: rgba(0, 0, 0, 0.044);
+      padding: 40px;
+      border-radius: 10px;
+      border: 2px dashed rgba(0, 0, 0, 0.39);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      color: rgba(0, 0, 0, 0.595);
+    }
+
+    .preview-image>p {
+      padding: 0;
+      margin: 0;
+      font-weight: 450;
+      font-size: 0.9rem;
+    }
+
+    .preview-image>i {
+      font-size: 2rem;
+    }
+
+    .box-1 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .box-1>p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .switch {
+      margin: 0;
+    }
+  </style>
+
+</head>
+
 <script>
   // function selectImage() {
   //   var input = document.createElement('input');
@@ -255,8 +218,6 @@
       x.style.display = "block";
     }
   }
-
-
 
   function validatePassword() {
     console.log();
@@ -373,15 +334,24 @@
       <p>Set up your profile to enjoy our services</p>
     </div>
     <form>
+
       <div class="form-group">
         <label for="image" class="image-picker">
           <span class="icon">
-            <img id="image-preview" src="https://cdn-icons-png.flaticon.com/128/685/685685.png" alt="" />
+            <div id="preview-image-div" class="preview-image">
+              <i class="fa-regular fa-image"></i>
+              <p>Upload your logo here</p>
+            </div>
           </span>
         </label>
+        <!-- Input field for uploading image -->
         <input type="file" id="image" name="image" onchange="previewImage(event)" />
       </div>
-      <div class="box">
+
+      <!-- Image preview container -->
+      <div id="selected-image-container" style="display: none;"></div>
+
+      <div class="box" style="margin-top: 20px;">
         <label for="">Business Name</label>
         <input type="text" name="businessName" required>
       </div>
@@ -402,15 +372,12 @@
       </div>
       <div class="box">
         <label for="">State</label>
-
         <select onchange="print_city('state', this.selectedIndex);" id="sts" name="state" required></select>
-
       </div>
       <div class="box">
         <label for="">City</label>
         <select id="state" name="city" required></select>
         <script language="javascript">print_state("sts");</script>
-
       </div>
       <div class="box">
         <label for="">Country</label>
@@ -484,24 +451,53 @@
         <button type="button" onclick="saveFormData()">Create Account</button>
       </div>
     </form>
-
-
   </div>
-</body>
 
-<script>
-  function saveFormData() {
-    var formData = {};
-    var formElements = document.querySelector('form').elements;
-    for (var i = 0; i < formElements.length; i++) {
-      if (formElements[i].type !== "button" && formElements[i].type !== "submit") {
-        formData[formElements[i].name] = formElements[i].value;
+  <script>
+
+    function saveFormData() {
+      var formData = {};
+      var formElements = document.querySelector('form').elements;
+      for (var i = 0; i < formElements.length; i++) {
+        if (formElements[i].type !== "button" && formElements[i].type !== "submit") {
+          formData[formElements[i].name] = formElements[i].value;
+        }
+      }
+      localStorage.setItem('formData', JSON.stringify(formData));
+      window.location.href = 'plans.html';
+    }
+
+    function toggleContent() {
+      var toggle = document.getElementById("toggle-content");
+      var checkbox = document.getElementById("toggleCheckbox");
+      if (checkbox.checked) {
+        toggle.style.display = "block";
+      } else {
+        toggle.style.display = "none";
       }
     }
-    localStorage.setItem('formData', JSON.stringify(formData));
-    window.location.href = 'plans.html';
-  }
-</script>
 
+    function previewImage(event) {
+      var input = event.target;
+      var preview = document.getElementById("image-preview");
+      var selectedImageContainer = document.getElementById("selected-image-container");
+
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          selectedImageContainer.innerHTML = '<img src="' + e.target.result + '" alt="Selected Image" style="max-width: 100%; max-height: 200px;">';
+        }
+
+        reader.readAsDataURL(input.files[0]);
+        document.getElementById("preview-image-div").style.display = "none";
+        selectedImageContainer.style.display = "block";
+      } else {
+        document.getElementById("preview-image-div").style.display = "block";
+        selectedImageContainer.style.display = "none";
+      }
+    }
+  </script>
+</body>
 
 </html>
