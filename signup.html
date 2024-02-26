@@ -165,6 +165,13 @@
       font-size: 2rem;
     }
 
+    .preview-image-tag {
+      max-width: 100%;
+      max-height: 200px;
+      display: block;
+      margin: auto;
+    }
+
     .box-1 {
       display: flex;
       align-items: center;
@@ -486,7 +493,7 @@
         var reader = new FileReader();
 
         reader.onload = function (e) {
-          selectedImageContainer.innerHTML = '<img src="' + e.target.result + '" alt="Selected Image" style="max-width: 100%; max-height: 200px;">';
+          selectedImageContainer.innerHTML = '<img src="' + e.target.result + '" alt="Selected Image" class="preview-image-tag">';
         }
 
         reader.readAsDataURL(input.files[0]);
