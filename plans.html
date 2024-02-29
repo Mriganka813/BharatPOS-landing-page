@@ -152,14 +152,17 @@
                 userData.subscription_id = subscriptionId;
 
                 var options = {
+                    // key: "rzp_test_nS4OygGNqxTFN8",
                     key: "rzp_live_KsxB9mILdGLLj3",
-                    amount: 1000, //Amount for plan
+                    amount: 1000,
                     currency: "INR",
                     name: "Bharat POS",
-                    description: "Premium Plan",
+                    description: "Premium Plan",    
                     subscription_id: subscriptionId,
 
                     handler: async function (response) {
+
+                        console.log("Hello");
 
                         var requestData = {
                             razorpay_payment_id: response.razorpay_payment_id,
@@ -168,8 +171,12 @@
                             userData: userData
                         };
 
+                        console.log(response)
+
                         // Make a POST request to the API
                         const data = await postData(`${server}/api/v1/subscription/paymentVerification`, requestData);
+
+                        console.log(data)
                         if (data.status === 200) {
                             window.location.href = 'paymentSuccess.html'
                         }
