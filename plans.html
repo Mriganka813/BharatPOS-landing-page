@@ -139,7 +139,7 @@
     <!-- JavaScript to handle Razorpay payment -->
     <script>
 
-        const server = 'https://testbackend-u2af.onrender.com';
+        const server = 'http://65.0.7.20:8001';
 
         var payButton = document.getElementById('payButton');
 
@@ -192,7 +192,8 @@
         });
 
         async function fetchSubscriptionId() {
-            var response = await fetch(`${server}/api/v1/subscription/new`);
+            console.log(`${server}/api/v1/subscription/new`)
+            var response = await fetch(`${server}/api/v1/subscription/new`, { method: 'GET' });
             var data = await response.json();
             return data.subscription_id;
         }
