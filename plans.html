@@ -139,7 +139,7 @@
     <!-- JavaScript to handle Razorpay payment -->
     <script>
 
-        const server = 'http://65.0.7.20:8001';
+        const server = 'https://subscription-vercel-puce.vercel.app';
 
         var payButton = document.getElementById('payButton');
 
@@ -170,7 +170,7 @@
                         };
 
                         // Make a POST request to the API
-                        const data = await postData(`${server}/api/v1/subscription/paymentVerification`, requestData);
+                        const data = await postData(`${server}/payment-verification`, requestData);
                         if (data.status === 200) {
                             window.location.href = 'paymentSuccess.html'
                         }
@@ -192,8 +192,8 @@
         });
 
         async function fetchSubscriptionId() {
-            console.log(`${server}/api/v1/subscription/new`)
-            var response = await fetch(`${server}/api/v1/subscription/new`, { method: 'GET' });
+            console.log(`${server}/create-subscription`)
+            var response = await fetch(`${server}/api/v1/subscription/new`, { method: 'POST' });
             var data = await response.json();
             return data.subscription_id;
         }
