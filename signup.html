@@ -187,6 +187,15 @@
     .switch {
       margin: 0;
     }
+
+    .agree-checkbox{
+      font-size: 0.9rem;
+    }
+
+    #passwordError, #confirmPasswordError{
+      font-size: 0.7rem;
+      color: red;
+    }
   </style>
 
 </head>
@@ -450,7 +459,7 @@
         <label for="">Longitude</label>
         <input type="text" id="longitude" name="longitude" readonly />
       </div>
-      <div class="box-check">
+      <div class="box-check agree-checkbox">
         <input type="checkbox" name="agreeTerms">
         <p>By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
       </div>
