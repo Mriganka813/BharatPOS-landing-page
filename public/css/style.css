@@ -1498,3 +1498,9 @@ section {
 #hero h2 {
   margin: 0;
 }
+
+.section-title > h2{
+  color: black;
+  font-size: 3rem;
+  font-weight: 500;
+}

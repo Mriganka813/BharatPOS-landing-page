@@ -9,12 +9,12 @@
 
     <style>
         .shipping-policy-head {
-            color: #0047FF;
             text-align: center;
-            font-weight: 470;
-            font-size: 4.3rem;
             padding-bottom: 40px;
-            animation: fadeInDown 1s ease-in-out; /* Animation for heading */
+            animation: fadeInDown 1s ease-in-out;
+            color: #000;
+            font-weight: 500;
+            font-size: 4.3rem;
         }
 
         @keyframes fadeInDown {
@@ -22,6 +22,7 @@
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -30,7 +31,8 @@
 
         .shipping-policy-content {
             opacity: 0;
-            animation: fadeInUp 1.5s ease-in-out forwards; /* Animation for content */
+            animation: fadeInUp 1.5s ease-in-out forwards;
+            /* Animation for content */
         }
 
         @keyframes fadeInUp {
@@ -38,6 +40,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -54,11 +57,10 @@
             line-height: 1.6;
         }
 
-        .shipping-policy-subHead{
-            color: #0047FF;
+        .shipping-policy-subHead {
+            color: #09025c;
             font-weight: 450;
         }
-
     </style>
 
 </head>
