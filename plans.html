@@ -149,7 +149,6 @@
         const subscribe = async (amount, plan_id) => {
             try {
                 var subscriptionId = await fetchSubscriptionId(plan_id);
-                console.log(subscriptionId)
 
                 var userData = JSON.parse(localStorage.getItem('formData'));
                 userData.subscription_id = subscriptionId;
@@ -195,7 +194,6 @@
         }
 
         async function fetchSubscriptionId(plan_id) {
-            console.log(plan_id);
             var response = await fetch(`${server}/create-subscription`, {
                 method: 'POST',
                 headers: {
