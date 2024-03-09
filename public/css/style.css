@@ -494,6 +494,7 @@ h6 {
   font-weight: bold;
   letter-spacing: 1px;
   margin-bottom: 20px;
+  color: black;
 }
 
 .detail-content p {
@@ -606,7 +607,7 @@ section {
 }
 
 .section-bg {
-  background-color: #f2f5fa;
+  background-color: #fff;
 }
 
 .section-title {
@@ -1254,7 +1255,6 @@ section {
   padding: 0 0 30px 0;
   color: #47536e;
   font-size: 14px;
-  background: #eff2f8;
 }
 
 #footer .footer-newsletter {
@@ -1382,7 +1382,7 @@ section {
   color: #0047FF;
 }
 
-#footer .footer-top .social-links a {
+/* #footer .footer-top .social-links a {
   font-size: 18px;
   display: inline-block;
   background: #0047FF;
@@ -1401,6 +1401,17 @@ section {
   background: #27282c;
   color: #fff;
   text-decoration: none;
+} */
+
+.social-links{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.social-links a svg{
+  height: 50px;
+  width: 50px;
 }
 
 #footer .copyright {
