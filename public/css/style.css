@@ -490,13 +490,16 @@ h6 {
 }
 
 .detail-content h3 {
-  font-size: 2.5rem;
+  font-size: 3.3rem;
   font-weight: bold;
   letter-spacing: 1px;
+  margin-bottom: 20px;
 }
 
 .detail-content p {
   text-align: justify;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
 }
 
 .detail-bg {
