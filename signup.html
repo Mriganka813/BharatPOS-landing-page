@@ -243,7 +243,6 @@
   }
 
   function validatePassword() {
-    console.log();
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
     const passwordError = document.getElementById('passwordError');
@@ -356,8 +355,7 @@
       <h1>Sign Up</h1>
       <p>Set up your profile to enjoy our services</p>
     </div>
-    <form>
-
+    <form id="signupForm">
       <div class="form-group">
         <label for="image" class="image-picker">
           <span class="icon">
@@ -367,11 +365,9 @@
             </div>
           </span>
         </label>
-        <!-- Input field for uploading image -->
-        <input type="file" id="image" name="image" onchange="previewImage(event)" />
+        <input type="file" id="image" name="image" onchange="previewImage(event)" required />
       </div>
 
-      <!-- Image preview container -->
       <div id="selected-image-container" style="display: none;"></div>
 
       <div class="box" style="margin-top: 20px;">
@@ -380,7 +376,8 @@
       </div>
       <div class="box">
         <label for="">Business Type</label>
-        <select name="businessType">
+        <select name="businessType" required>
+          <option value="">Select</option>
           <option>Food</option>
           <option>Grocery</option>
           <option>Medical</option>
@@ -418,10 +415,10 @@
         <p>Have GSTIN?</p>
       </div>
 
-      <div id="toggle-content">
+      <div id="toggle-content" style="display: none;">
         <div class="box">
           <label for="">GSTIN</label>
-          <input type="text" name="GstIN">
+          <input type="text" name="GstIN" id="GstIN">
         </div>
         <div class="box">
           <label for="">Type</label>
@@ -456,7 +453,7 @@
         <input type="number" name="phoneNumber" required>
       </div>
       <div class="box">
-        <button onclick="getLocation()">Get Location</button>
+        <button type="button" onclick="getLocation()">Get Location</button>
       </div>
       <div class="box">
         <label for="">Latitude</label>
@@ -467,7 +464,7 @@
         <input type="text" id="longitude" name="longitude" readonly />
       </div>
       <div class="box-check agree-checkbox">
-        <input type="checkbox" name="agreeTerms">
+        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
         <p>By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
       </div>
       <div class="box">
@@ -477,18 +474,26 @@
   </div>
 
   <script>
-
     function saveFormData() {
-      var formData = {};
-      var formElements = document.querySelector('form').elements;
-      for (var i = 0; i < formElements.length; i++) {
-        if (formElements[i].type !== "button" && formElements[i].type !== "submit") {
-          formData[formElements[i].name] = formElements[i].value;
+      var form = document.getElementById('signupForm');
+      var agreeTerms = document.getElementById('agreeTerms');
+      var formData = { "subscription_status": "active" };
+
+      if (form.checkValidity() && agreeTerms.checked) {
+        var formElements = document.querySelector('form').elements;
+        for (var i = 0; i < formElements.length; i++) {
+          var element = formElements[i];
+          if (element.type !== "button" && element.type !== "submit" && element.name !== "agreeTerms" && element.value !== "") {
+            formData[element.name] = element.value;
+          }
         }
+        localStorage.setItem('formData', JSON.stringify(formData));
+        window.location.href = 'plans.html';
+      } else {
+        alert('Please fill in all required fields and agree to the terms and conditions.');
       }
-      localStorage.setItem('formData', JSON.stringify(formData));
-      window.location.href = 'plans.html';
     }
+
 
     function toggleContent() {
       var toggle = document.getElementById("toggle-content");
@@ -518,6 +523,19 @@
       } else {
         document.getElementById("preview-image-div").style.display = "block";
         selectedImageContainer.style.display = "none";
+      }
+    }
+
+    function validatePassword() {
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+      var passwordError = document.getElementById('passwordError');
+      var confirmPasswordError = document.getElementById('confirmPasswordError');
+
+      if (password !== confirmPassword) {
+        confirmPasswordError.textContent = 'Passwords do not match';
+      } else {
+        confirmPasswordError.textContent = '';
       }
     }
   </script>
