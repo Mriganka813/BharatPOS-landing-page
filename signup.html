@@ -365,7 +365,7 @@
             </div>
           </span>
         </label>
-        <input type="file" id="image" name="image" onchange="previewImage(event)" required />
+        <input type="file" id="image" name="image" onchange="previewImage(event)" />
       </div>
 
       <div id="selected-image-container" style="display: none;"></div>
@@ -468,7 +468,7 @@
         <p>By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
       </div>
       <div class="box">
-        <button type="button" onclick="saveFormData()">Create Account</button>
+        <button type="button" onclick="subscribe()">Create Account</button>
       </div>
     </form>
   </div>
@@ -539,6 +539,85 @@
       }
     }
   </script>
+
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <script>
+
+    const server = 'https://site.bharatpos.xyz';
+
+    async function subscribe() {
+      var form = document.getElementById('signupForm');
+      var agreeTerms = document.getElementById('agreeTerms');
+      var formData = { "subscription_status": "active" };
+
+      if (form.checkValidity() && agreeTerms.checked) {
+        var formElements = form.elements;
+        for (var i = 0; i < formElements.length; i++) {
+          var element = formElements[i];
+          if (element.type !== "button" && element.type !== "submit" && element.name !== "agreeTerms" && element.value !== "") {
+            formData[element.name] = element.value;
+          }
+        }
+
+        try {
+          const response = await fetch(`${server}/api/v1/get-order-id`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ amount: 1 })
+          });
+
+          const data = await response.json();
+          const { id: order_id, amount: responseAmount } = data.savedOrder;
+
+          const options = {
+            key: "rzp_live_4I0LXvPfXBXPI7",
+            amount: responseAmount,
+            currency: "INR",
+            name: "BharatPOS",
+            description: "BharatPOS registration",
+            order_id: order_id,
+            handler: async function (response) {
+              await postData(`${server}/api/v1/registration`, formData);
+              window.location.href = 'paymentSuccess.html';
+            },
+            theme: {
+              color: "#e1dd7c"
+            },
+            modal: {
+              ondismiss: function () {
+                window.location.href = 'paymentFail.html';
+              }
+            }
+          };
+
+          const razorpay = new window.Razorpay(options);
+          razorpay.open();
+
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      } else {
+        alert('Please fill in all required fields and agree to the terms and conditions.');
+      }
+    }
+
+    async function postData(url, data) {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      console.log(response)
+      return response;
+    }
+  </script>
+
 </body>
 
 </html>

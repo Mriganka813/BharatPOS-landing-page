@@ -176,7 +176,7 @@
         {
             plan_type: "Yearly",
             plan_detail: "The smarter way to protect your business - save ₹489 with our annual plan",
-            plan_price: 1999,
+            plan_price: 999,
             redirect_link: "signup.html"
         },
         {
@@ -199,14 +199,15 @@
             card.setAttribute('data-aos-delay', '600');
 
             card.innerHTML = `
-                    <p>${plan.plan_type}</p>
-                    <p class="price-detail" style="font-size: 1.2rem; text-align: left;">${plan.plan_detail}</p>
-                    <button onclick="window.location.href='${plan.redirect_link}'">
-                        ₹ ${plan.plan_price}
-                    </button>
-                `;
+                <p>${plan.plan_type}</p>
+                <p class="price-detail" style="font-size: 1.2rem; text-align: left;">${plan.plan_detail}</p>
+                <button onclick="window.location.href='${plan.redirect_link}'">
+                    ${plan.plan_type === "Enterprise" ? plan.plan_price : `₹ ${plan.plan_price}`}
+                </button>
+            `;
 
             container.appendChild(card);
+
         });
     }
 
