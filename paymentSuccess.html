@@ -17,6 +17,7 @@
             justify-content: center;
             flex-direction: column;
             height: 100dvh;
+            margin-inline: 20px;
         }
 
         .success-animation {
@@ -40,12 +41,19 @@
             margin-block: 5px;
             text-align: left;
             align-self: flex-start;
-            margin-inline: 20px;
+            /* margin-inline: 20px; */
         }
 
         .step-num {
             font-weight: bold;
             color: #28a745;
+        }
+
+        .redirect-url-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .redirect-urls {
@@ -56,6 +64,10 @@
             width: 150px;
             margin: 0 10px;
             transition: transform 0.3s ease-in-out;
+        }
+
+        .redirect-urls-windows img {
+            width: 120px;
         }
 
         .redirect-urls img:hover {
@@ -82,6 +94,10 @@
             .redirect-urls img {
                 width: 120px;
             }
+
+            .redirect-urls-windows img {
+                width: 90px;
+            }
         }
     </style>
 </head>
@@ -93,16 +109,24 @@
         <h1>Payment Successful</h1>
         <p class="lead">To Get Started</p>
         <div class="steps">
-            <p class="step"><span class="step-num">STEP 1</span> Download BharatPOS app for Android here</p>
-            <div class="redirect-urls">
-                <a href="https://play.google.com/store/apps/details?id=com.cube.magicstep" target="_blank">
-                    <img src="./public/img/google1.png" alt="">
-                </a>
+            <p class="step"><span class="step-num">STEP 1</span> Download BharatPOS app for Android/Windows here</p>
+            <div class="redirect-url-group">
+                <div class="redirect-urls">
+                    <a href="https://play.google.com/store/apps/details?id=com.cube.magicstep" target="_blank">
+                        <img src="./public/img/google1.png" alt="">
+                    </a>
+                </div>
+                <div class="redirect-urls redirect-urls-windows">
+                    <a href="Download/BharatPOS.exe" target="_blank">
+                        <img src="./public/img/windows.png" alt="">
+                    </a>
+                </div>
             </div>
             <p class="step"><span class="step-num">STEP 2</span> Login with your email id and password</p>
             <p class="step"><span class="step-num">STEP 3</span> Click on the link below to get a full tutorial</p>
             <div class="redirect-urls">
-                <a href="https://youtube.com/playlist?list=PL8HQVQZGhQ_1N7xcBEtqIMt6XdQqCY_zT&si=hXXUeaTI3yrSNObD" target="_blank">
+                <a href="https://youtube.com/playlist?list=PL8HQVQZGhQ_1N7xcBEtqIMt6XdQqCY_zT&si=hXXUeaTI3yrSNObD"
+                    target="_blank">
                     <img src="./public/img/youtube.png" alt="">
                 </a>
             </div>
