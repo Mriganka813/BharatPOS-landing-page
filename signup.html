@@ -567,91 +567,11 @@
     }
   </script>
 
-
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <script>
 
     const server = 'https://site.bharatpos.xyz';
-
-    async function subscribe() {
-      var form = document.getElementById('signupForm');
-      var agreeTerms = document.getElementById('agreeTerms');
-      var formData = { "subscription_status": "active" };
-      var mandatoryFields = [];
-
-      if (form.checkValidity() && agreeTerms.checked) {
-        var formElements = form.elements;
-        for (var i = 0; i < formElements.length; i++) {
-          var element = formElements[i];
-          if (element.type !== "button" && element.type !== "submit" && element.name !== "agreeTerms" && element.value !== "") {
-            formData[element.name] = element.name === "phoneNumber" ? parseInt(element.value) : element.value;
-          } else if (element.required && element.value === "") {
-            mandatoryFields.push(element.previousElementSibling.textContent);
-          }
-        }
-
-        if (mandatoryFields.length > 0) {
-          alert('Please fill in all required fields: ' + mandatoryFields.join(", "));
-        } else {
-          try {
-            const response = await fetch(`${server}/api/v1/get-order-id`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ amount: 999 })
-            });
-
-            const data = await response.json();
-            const { id: order_id, amount: responseAmount } = data.savedOrder;
-
-            const options = {
-              key: "rzp_live_4I0LXvPfXBXPI7",
-              amount: responseAmount,
-              currency: "INR",
-              name: "BharatPOS",
-              description: "BharatPOS registration",
-              order_id: order_id,
-              handler: async function (response) {
-                await postData(`${server}/api/v1/registration`, formData);
-                window.location.href = 'paymentSuccess.html';
-              },
-              theme: {
-                color: "#e1dd7c"
-              },
-              modal: {
-                ondismiss: function () {
-                  window.location.href = 'paymentFail.html';
-                }
-              }
-            };
-
-            const razorpay = new window.Razorpay(options);
-            razorpay.open();
-
-          } catch (error) {
-            console.error('Error:', error);
-          }
-        }
-      } else {
-        if (!form.checkValidity()) {
-          for (var i = 0; i < form.elements.length; i++) {
-            var element = form.elements[i];
-            if (element.required && !element.value) {
-              element.style.border = '2px solid red'; // Highlight the empty required field
-            }
-          }
-        }
-        if (!agreeTerms.checked) {
-          alert('You must agree to the terms and conditions.');
-        } else if (mandatoryFields.length > 0) {
-          alert('Please fill in all required fields: ' + mandatoryFields.join(", "));
-        } else {
-          alert('Please fill in all required fields and agree to the terms and conditions.');
-        }
-      }
-    }
 
     async function subscribe() {
       var form = document.getElementById('signupForm');
@@ -667,63 +587,61 @@
         }
       }
 
-      if (agreeTerms.checked) {
-        var formElements = form.elements;
-        for (var i = 0; i < formElements.length; i++) {
-          var element = formElements[i];
-          if (element.required && element.value === "") {
-            mandatoryFields.push(element.previousElementSibling.textContent);
-            element.style.border = '2px solid red'; // Highlight the empty required field
-          } else if (element.type !== "button" && element.type !== "submit" && element.name !== "agreeTerms" && element.value !== "") {
-            formData[element.name] = element.name === "phoneNumber" ? parseInt(element.value) : element.value;
-          }
+      var formElements = form.elements;
+      for (var i = 0; i < formElements.length; i++) {
+        var element = formElements[i];
+        if (element.required && element.value === "") {
+          mandatoryFields.push(element.previousElementSibling.textContent);
+          element.style.border = '2px solid red'; // Highlight the empty required field
+        } else if (element.type !== "button" && element.type !== "submit" && element.name !== "agreeTerms" && element.value !== "") {
+          formData[element.name] = element.name === "phoneNumber" ? parseInt(element.value) : element.value;
         }
+      }
 
-        if (mandatoryFields.length > 0) {
-          alert('Please fill in all required fields: ' + mandatoryFields.join(", "));
-        } else {
-          try {
-            const response = await fetch(`${server}/api/v1/get-order-id`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ amount: 999 })
-            });
-
-            const data = await response.json();
-            const { id: order_id, amount: responseAmount } = data.savedOrder;
-
-            const options = {
-              key: "rzp_live_4I0LXvPfXBXPI7",
-              amount: responseAmount,
-              currency: "INR",
-              name: "BharatPOS",
-              description: "BharatPOS registration",
-              order_id: order_id,
-              handler: async function (response) {
-                await postData(`${server}/api/v1/registration`, formData);
-                window.location.href = 'paymentSuccess.html';
-              },
-              theme: {
-                color: "#e1dd7c"
-              },
-              modal: {
-                ondismiss: function () {
-                  window.location.href = 'paymentFail.html';
-                }
-              }
-            };
-
-            const razorpay = new window.Razorpay(options);
-            razorpay.open();
-
-          } catch (error) {
-            console.error('Error:', error);
-          }
-        }
-      } else {
+      if (mandatoryFields.length > 0) {
+        alert('Please fill in all required fields: ' + mandatoryFields.join(", "));
+      } else if (!agreeTerms.checked) {
         alert('You must agree to the terms and conditions.');
+      } else {
+        try {
+          const response = await fetch(`${server}/api/v1/get-order-id`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ amount: 999 })
+          });
+
+          const data = await response.json();
+          const { id: order_id, amount: responseAmount } = data.savedOrder;
+
+          const options = {
+            key: "rzp_live_4I0LXvPfXBXPI7",
+            amount: responseAmount,
+            currency: "INR",
+            name: "BharatPOS",
+            description: "BharatPOS registration",
+            order_id: order_id,
+            handler: async function (response) {
+              await postData(`${server}/api/v1/registration`, formData);
+              window.location.href = 'paymentSuccess.html';
+            },
+            theme: {
+              color: "#e1dd7c"
+            },
+            modal: {
+              ondismiss: function () {
+                window.location.href = 'paymentFail.html';
+              }
+            }
+          };
+
+          const razorpay = new window.Razorpay(options);
+          razorpay.open();
+
+        } catch (error) {
+          console.error('Error:', error);
+        }
       }
     }
 
