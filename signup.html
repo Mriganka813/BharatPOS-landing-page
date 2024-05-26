@@ -479,73 +479,6 @@
     </form>
   </div>
 
-  <!-- <script>
-    function saveFormData() {
-      var form = document.getElementById('signupForm');
-      var agreeTerms = document.getElementById('agreeTerms');
-      var formData = { "subscription_status": "active" };
-
-      if (form.checkValidity() && agreeTerms.checked) {
-        var formElements = document.querySelector('form').elements;
-        for (var i = 0; i < formElements.length; i++) {
-          var element = formElements[i];
-          if (element.type !== "button" && element.type !== "submit" && element.name !== "agreeTerms" && element.value !== "") {
-            formData[element.name] = element.value;
-          }
-        }
-        localStorage.setItem('formData', JSON.stringify(formData));
-        window.location.href = 'plans.html';
-      } else {
-        alert('Please fill in all required fields and agree to the terms and conditions.');
-      }
-    }
-
-
-    function toggleContent() {
-      var toggle = document.getElementById("toggle-content");
-      var checkbox = document.getElementById("toggleCheckbox");
-      if (checkbox.checked) {
-        toggle.style.display = "block";
-      } else {
-        toggle.style.display = "none";
-      }
-    }
-
-    function previewImage(event) {
-      var input = event.target;
-      var preview = document.getElementById("image-preview");
-      var selectedImageContainer = document.getElementById("selected-image-container");
-
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          selectedImageContainer.innerHTML = '<img src="' + e.target.result + '" alt="Selected Image" class="preview-image-tag">';
-        }
-
-        reader.readAsDataURL(input.files[0]);
-        document.getElementById("preview-image-div").style.display = "none";
-        selectedImageContainer.style.display = "block";
-      } else {
-        document.getElementById("preview-image-div").style.display = "block";
-        selectedImageContainer.style.display = "none";
-      }
-    }
-
-    function validatePassword() {
-      var password = document.getElementById('password').value;
-      var confirmPassword = document.getElementById('confirmPassword').value;
-      var passwordError = document.getElementById('passwordError');
-      var confirmPasswordError = document.getElementById('confirmPasswordError');
-
-      if (password !== confirmPassword) {
-        confirmPasswordError.textContent = 'Passwords do not match';
-      } else {
-        confirmPasswordError.textContent = '';
-      }
-    }
-  </script> -->
-
   <script>
     function validatePassword() {
       var password = document.getElementById('password').value;
@@ -575,15 +508,20 @@
 
     async function subscribe() {
       var form = document.getElementById('signupForm');
+      var password = document.getElementById('password').value;
       var agreeTerms = document.getElementById('agreeTerms');
       var formData = { "subscription_status": "active" };
       var mandatoryFields = [];
 
-      // Reset previous error highlights
+      if (password.length < 8) {
+        alert('Password must be at least 8 characters long');
+        return;
+      }
+
       for (var i = 0; i < form.elements.length; i++) {
         var element = form.elements[i];
         if (element.required) {
-          element.style.border = ''; // Reset the border style
+          element.style.border = '';
         }
       }
 
