@@ -356,7 +356,8 @@
       <p>Set up your profile to enjoy our services</p>
     </div>
     <form id="signupForm">
-      <div class="form-group">
+
+      <!-- <div class="form-group">
         <label for="image" class="image-picker">
           <span class="icon">
             <div id="preview-image-div" class="preview-image">
@@ -368,13 +369,14 @@
         <input type="file" id="image" name="image" onchange="previewImage(event)" />
       </div>
 
-      <div id="selected-image-container" style="display: none;"></div>
+      <div id="selected-image-container" style="display: none;"></div> -->
 
       <div class="box" style="margin-top: 20px;">
         <label for="">Business Name</label>
         <input type="text" name="businessName" required>
       </div>
-      <div class="box">
+
+      <!-- <div class="box">
         <label for="">Business Type</label>
         <select name="businessType" required>
           <option value="">Select</option>
@@ -385,9 +387,10 @@
           <option>Stationary</option>
           <option>Electrical</option>
         </select>
-      </div>
+      </div> -->
+
       <div class="box">
-        <label for="locality">Locality:</label>
+        <label for="locality">Locality</label>
         <input type="text" id="locality" name="locality" required>
       </div>
       <div class="box">
@@ -407,15 +410,15 @@
         <label for="">UPI ID (optional)</label>
         <input type="text" name="upi_id">
       </div>
-      <div class="box-1">
+      <!-- <div class="box-1">
         <label class="switch">
           <input type="checkbox" id="toggleCheckbox" onclick="toggleContent()">
           <span class="slider round"> </span>
         </label>
         <p>Have GSTIN?</p>
-      </div>
+      </div> -->
 
-      <div id="toggle-content" style="display: none;">
+      <!-- <div id="toggle-content" style="display: none;">
         <div class="box">
           <label for="">GSTIN</label>
           <input type="text" name="GstIN" id="GstIN">
@@ -429,7 +432,8 @@
             <label for="quarterly">Quarterly</label>
           </div>
         </div>
-      </div>
+      </div> -->
+
       <div class="box">
         <label for="">Email</label>
         <input type="email" name="email" required>
@@ -444,28 +448,30 @@
         <input type="password" id="confirmPassword" name="confirmPassword" required oninput="validatePassword()">
         <p class="error" id="confirmPasswordError"></p>
       </div>
-      <div class="box">
+      <!-- <div class="box">
         <label for="">Referral (if any)</label>
         <input type="text" name="referredBy">
-      </div>
+      </div> -->
       <div class="box">
         <label for="">Phone Number</label>
-        <input type="number" name="phoneNumber" required>
+        <input type="text" name="phoneNumber" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
       </div>
-      <div class="box">
+
+      <!-- <div class="box">
         <button type="button" onclick="getLocation()">Get Location</button>
-      </div>
-      <div class="box">
+      </div> -->
+      <!-- <div class="box">
         <label for="">Latitude</label>
         <input type="text" id="latitude" name="latitude" readonly />
       </div>
       <div class="box">
         <label for="">Longitude</label>
         <input type="text" id="longitude" name="longitude" readonly />
-      </div>
+      </div> -->
       <div class="box-check agree-checkbox">
         <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
-        <p>By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+        <p>By signing up, you agree to our <a href="termsandcondition.html">Terms of Service</a> and <a
+            href="privacypolicy.html">Privacy Policy</a></p>
       </div>
       <div class="box">
         <button type="button" onclick="subscribe()">Create Account</button>
@@ -473,7 +479,7 @@
     </form>
   </div>
 
-  <script>
+  <!-- <script>
     function saveFormData() {
       var form = document.getElementById('signupForm');
       var agreeTerms = document.getElementById('agreeTerms');
@@ -538,6 +544,27 @@
         confirmPasswordError.textContent = '';
       }
     }
+  </script> -->
+
+  <script>
+    function validatePassword() {
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+      var passwordError = document.getElementById('passwordError');
+      var confirmPasswordError = document.getElementById('confirmPasswordError');
+
+      if (password.length < 8) {
+        passwordError.textContent = 'Password must be at least 8 characters long';
+      } else {
+        passwordError.textContent = '';
+      }
+
+      if (password !== confirmPassword) {
+        confirmPasswordError.textContent = 'Passwords do not match';
+      } else {
+        confirmPasswordError.textContent = '';
+      }
+    }
   </script>
 
 
@@ -547,63 +574,129 @@
 
     const server = 'https://site.bharatpos.xyz';
 
+    // async function subscribe() {
+    //   var form = document.getElementById('signupForm');
+    //   var agreeTerms = document.getElementById('agreeTerms');
+    //   var formData = { "subscription_status": "active" };
+
+    //   if (form.checkValidity() && agreeTerms.checked) {
+    //     var formElements = form.elements;
+    //     for (var i = 0; i < formElements.length; i++) {
+    //       var element = formElements[i];
+    //       if (element.type !== "button" && element.type !== "submit" && element.name !== "agreeTerms" && element.value !== "") {
+    //         formData[element.name] = element.value;
+    //       }
+    //     }
+
+    //     try {
+    //       const response = await fetch(`${server}/api/v1/get-order-id`, {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ amount: 999 })
+    //       });
+
+    //       const data = await response.json();
+    //       const { id: order_id, amount: responseAmount } = data.savedOrder;
+
+    //       const options = {
+    //         key: "rzp_live_4I0LXvPfXBXPI7",
+    //         amount: responseAmount,
+    //         currency: "INR",
+    //         name: "BharatPOS",
+    //         description: "BharatPOS registration",
+    //         order_id: order_id,
+    //         handler: async function (response) {
+    //           await postData(`${server}/api/v1/registration`, formData);
+    //           window.location.href = 'paymentSuccess.html';
+    //         },
+    //         theme: {
+    //           color: "#e1dd7c"
+    //         },
+    //         modal: {
+    //           ondismiss: function () {
+    //             window.location.href = 'paymentFail.html';
+    //           }
+    //         }
+    //       };
+
+    //       const razorpay = new window.Razorpay(options);
+    //       razorpay.open();
+
+    //     } catch (error) {
+    //       console.error('Error:', error);
+    //     }
+    //   } else {
+    //     alert('Please fill in all required fields and agree to the terms and conditions.');
+    //   }
+    // }
+
     async function subscribe() {
       var form = document.getElementById('signupForm');
       var agreeTerms = document.getElementById('agreeTerms');
       var formData = { "subscription_status": "active" };
+      var mandatoryFields = [];
 
       if (form.checkValidity() && agreeTerms.checked) {
         var formElements = form.elements;
         for (var i = 0; i < formElements.length; i++) {
           var element = formElements[i];
           if (element.type !== "button" && element.type !== "submit" && element.name !== "agreeTerms" && element.value !== "") {
-            formData[element.name] = element.value;
+            formData[element.name] = element.name === "phoneNumber" ? parseInt(element.value) : element.value;
+          } else if (element.required && element.value === "") {
+            mandatoryFields.push(element.previousElementSibling.textContent);
           }
         }
 
-        try {
-          const response = await fetch(`${server}/api/v1/get-order-id`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ amount: 999 })
-          });
+        if (mandatoryFields.length > 0) {
+          alert('Please fill in all required fields: ' + mandatoryFields.join(", "));
+        } else {
+          try {
+            const response = await fetch(`${server}/api/v1/get-order-id`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ amount: 999 })
+            });
 
-          const data = await response.json();
-          const { id: order_id, amount: responseAmount } = data.savedOrder;
+            const data = await response.json();
+            const { id: order_id, amount: responseAmount } = data.savedOrder;
 
-          const options = {
-            key: "rzp_live_4I0LXvPfXBXPI7",
-            amount: responseAmount,
-            currency: "INR",
-            name: "BharatPOS",
-            description: "BharatPOS registration",
-            order_id: order_id,
-            handler: async function (response) {
-              await postData(`${server}/api/v1/registration`, formData);
-              window.location.href = 'paymentSuccess.html';
-            },
-            theme: {
-              color: "#e1dd7c"
-            },
-            modal: {
-              ondismiss: function () {
-                window.location.href = 'paymentFail.html';
+            const options = {
+              key: "rzp_live_4I0LXvPfXBXPI7",
+              amount: responseAmount,
+              currency: "INR",
+              name: "BharatPOS",
+              description: "BharatPOS registration",
+              order_id: order_id,
+              handler: async function (response) {
+                await postData(`${server}/api/v1/registration`, formData);
+                window.location.href = 'paymentSuccess.html';
+              },
+              theme: {
+                color: "#e1dd7c"
+              },
+              modal: {
+                ondismiss: function () {
+                  window.location.href = 'paymentFail.html';
+                }
               }
-            }
-          };
+            };
 
-          const razorpay = new window.Razorpay(options);
-          razorpay.open();
+            const razorpay = new window.Razorpay(options);
+            razorpay.open();
 
-        } catch (error) {
-          console.error('Error:', error);
+          } catch (error) {
+            console.error('Error:', error);
+          }
         }
       } else {
         alert('Please fill in all required fields and agree to the terms and conditions.');
       }
     }
+
 
     async function postData(url, data) {
       const response = await fetch(url, {
